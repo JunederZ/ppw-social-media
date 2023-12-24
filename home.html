@@ -1,95 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Landing Page</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 20px;
-            text-align: center;
-        }
-
-        h1 {
-            font-size: 36px;
-            margin: 0;
-        }
-
-        main {
-            max-width: 800px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        section {
-            margin-bottom: 20px;
-        }
-
-        h2 {
-            font-size: 24px;
-            margin: 0 0 10px;
-        }
-
-        p {
-            margin: 0 0 10px;
-        }
-
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        li {
-            margin-bottom: 5px;
-        }
-
-        footer {
-            background-color: #333;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-        }
-    </style>
+    <title>KoffeeHub Page</title>
+    <link rel="stylesheet" href="home.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 <body>
-    <header>
-        <h1>Welcome to our Landing Page</h1>
+    <header class="header">
+        <div class="left-header">
+            <form class="search-bar">
+                <input class="search-input" type="text" placeholder="Search">
+                <button class="search-button" type="submit">Search</button>
+            </form>
+        </div>
+        <div class="middle-header">
+                <div class="home-page">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-house-door" viewBox="0 0 16 16">
+                        <path d="M8.354 1.146a.5.5 0 0 0-.708 0l-6 6A.5.5 0 0 0 1.5 7.5v7a.5.5 0 0 0 .5.5h4.5a.5.5 0 0 0 .5-.5v-4h2v4a.5.5 0 0 0 .5.5H14a.5.5 0 0 0 .5-.5v-7a.5.5 0 0 0-.146-.354L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293zM2.5 14V7.707l5.5-5.5 5.5 5.5V14H10v-4a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5v4z"/>
+                      </svg>
+                </div>
+                <div class="friend-page">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
+                        <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5"/>
+                      </svg>
+                </div>
+        </div>
+        <div class="right-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
+                <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2m.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z"/>
+              </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor" class="bi bi-circle-fill" viewBox="0 0 16 16">
+                <circle cx="8" cy="8" r="8"/>
+              </svg>
+        </div>
+        <!-- <h1>Welcome to KoffeeHub</h1> -->
     </header>
 
-    <main>
-        <section>
-            <h2>About Us</h2>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam auctor, nunc id aliquam tincidunt, urna nunc luctus nunc, id lacinia nunc nunc non nisl.</p>
-        </section>
-
-        <section>
-            <h2>Services</h2>
-            <ul>
-                <li>Service 1</li>
-                <li>Service 2</li>
-                <li>Service 3</li>
+    <!-- make it spread to the side -->
+    <div class="mainBox">
+        <section class="left-section">
+            <!-- Add content for the left section here -->
+            <ul class="menu">
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Profile</a></li>
+                <li><a href="#">Messages</a></li>
+                <li><a href="#">Notifications</a></li>
             </ul>
         </section>
 
-        <section>
-            <h2>Contact Us</h2>
-            <p>Email: info@example.com</p>
-            <p>Phone: 123-456-7890</p>
+        <section class="middle-section">
+            <!-- Add content for the middle section here -->
+            <div class="post">
+                <p class="post-content">This is another post content.</p>
+                <p class="post-author">Jane Smith</p>
+                <p class="post-time">1 hour ago</p>
+            </div>
         </section>
-    </main>
+
+        <section class="right-section">
+            <!-- Add content for the right section here -->
+            <form>
+                <input type="text" placeholder="Search">
+                <button type="submit">Search</button>
+            </form>
+        </section>
+    </div>
 
     <footer>
-        <p>&copy; 2022 Your Company. All rights reserved.</p>
+        <p>&copy; 2023 KaffeHub Inc. All rights reserved.</p>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 </body>
 </html>
