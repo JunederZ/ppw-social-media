@@ -15,14 +15,17 @@ function handleLoginFormSubmit(event) {
     })
         .then(response => response.text())
         .then(data => {
-            data = JSON.parse(data);
             console.log(data);
+            if (data === 'username or password is wrong') {
+                alert('Username or password is wrong');
+                return;
+            }
+            data = JSON.parse(data);
             if (data.userId !== null) { 
                 console.log('Login successful');
                 window.location.replace("home.html");
                 setCookie('id', data.userId, 1);
                 setCookie('username', data.username, 1);
-                removeCookie('id');
             } else {
                 console.log('Login failed');
             }
@@ -39,7 +42,7 @@ function setCookie(cname,cvalue,exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays*24*60*60*1000));
     let expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+    document.cookie = cname + "=" + cvalue + ";" + expires + "; SameSite=None;" + "path=/";
   }
   
   function getCookie(cname) {

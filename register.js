@@ -14,7 +14,6 @@ function registerFormSubmit(event) {
     console.log(JSON.stringify({ username, email, password }));
 
     fetch('https://ppwsosmed.risalahqz.repl.co/api/register', {
-        mode: 'no-cors',
         method: 'POST',
         body: JSON.stringify({ username, email, password }),
         headers: {
@@ -24,7 +23,18 @@ function registerFormSubmit(event) {
         .then(response => response.status)
         .then(data => {
             console.log(data);
-            alert('Registration successful!');
+            if (data === 200) {
+                alert('Registration successful!');
+                window.location.replace("index.html");
+            }
+            else if (data === 401) {
+                alert('Account already exists!');
+                return;
+            }
+            else {
+                alert('Registration failed. Please try again later.');
+            }
+            
         })
         .catch(error => {
             console.error(error);
