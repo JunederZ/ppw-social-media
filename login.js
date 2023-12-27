@@ -1,3 +1,5 @@
+import * as cookieUtils from './cookie.mjs';
+
 function handleLoginFormSubmit(event) {
     event.preventDefault();
 
@@ -24,8 +26,8 @@ function handleLoginFormSubmit(event) {
             if (data.userId !== null) { 
                 console.log('Login successful');
                 window.location.replace("home.html");
-                setCookie('id', data.userId, 1);
-                setCookie('username', data.username, 1);
+                cookieUtils.setCookie('id', data.userId, 1);
+                cookieUtils.setCookie('username', data.username, 1);
             } else {
                 console.log('Login failed');
             }
@@ -37,30 +39,3 @@ function handleLoginFormSubmit(event) {
 
 const loginForm = document.getElementById('loginForm');
 loginForm.addEventListener('submit', handleLoginFormSubmit);
-
-function setCookie(cname,cvalue,exdays) {
-    const d = new Date();
-    d.setTime(d.getTime() + (exdays*24*60*60*1000));
-    let expires = "expires=" + d.toUTCString();
-    document.cookie = cname + "=" + cvalue + ";" + expires + "; SameSite=None;" + "path=/";
-  }
-  
-  function getCookie(cname) {
-    let name = cname + "=";
-    let decodedCookie = decodeURIComponent(document.cookie);
-    let ca = decodedCookie.split(';');
-    for(let i = 0; i < ca.length; i++) {
-      let c = ca[i];
-      while (c.charAt(0) == ' ') {
-        c = c.substring(1);
-      }
-      if (c.indexOf(name) == 0) {
-        return c.substring(name.length, c.length);
-      }
-    }
-    return "";
-  }
-
-  function removeCookie(cname) {
-    document.cookie = cname + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-}

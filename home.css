@@ -183,3 +183,10 @@ footer {
     border-bottom: solid;
     border-bottom-color: #FFB574;
 }
+
+.no-post {
+    display: grid;
+    place-items: center;
+    color: beige;
+    font-size: large;
+}
