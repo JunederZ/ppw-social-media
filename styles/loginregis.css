@@ -82,7 +82,7 @@ body {
 form .box{
     position: relative;
     border-bottom: 2px solid #adadad;
-    margin: 30px 0;
+    margin: 20px 0;
 }
 
 .box input{
@@ -114,9 +114,9 @@ form .box{
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     border-bottom: 3px solid #603913;
-    padding-bottom: 30px;
+    padding-bottom: 20px;
 }
 
 .login-btn {
@@ -195,7 +195,7 @@ form .register-box{
 }
 
 .baru {
-    padding-top: 10px;
+    padding-top: 5px;
     top: 0;
     left: 0;
     font-family: "Inter-Bold", Helvetica;
