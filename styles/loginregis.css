@@ -1,0 +1,273 @@
+body {
+    display: flex;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: #e8e8e8;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    background: #e8e8e8;
+    height: 100vh;
+}
+
+.logo img {
+    width: 120%;
+    margin-top: -200px;
+
+}
+
+.enjoy-your-coffee {
+    top: 0;
+    left: 0;
+    padding-top: 40px;
+    padding-left: 110px;
+    margin-bottom: 10px;
+    align-items: center;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: #603913;
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    background: #e8e8e8;
+    height: 100vh;
+}
+
+.rectangle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    height: 80%;
+    top: 0;
+    background-color: #ffe6cb;
+    border-radius: 40px;
+}
+
+.login-text {
+    top: 0;
+    left: 0;
+    padding-top: 5px;
+    margin-bottom: 10px;
+    align-items: center;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: #603913;
+    font-size: 30px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.rectangle form {
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+form .box{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 30px 0;
+}
+
+.box input{
+    position: relative;
+    width: 100%;
+    padding: 0 5px;
+    top: 5px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 10px;
+    background: #ededed;
+    outline: none;
+}
+
+.box label{
+    top: 0;
+    left: 0;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: #603913;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 0;
+}
+
+.box-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20px;
+    border-bottom: 3px solid #603913;
+    padding-bottom: 30px;
+}
+
+.login-btn {
+    width: 60%;
+    height: 40px;
+    top: 0;
+    background-color: #603913;
+    border-radius: 50px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    outline: none;
+}
+
+.googlebtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background-color: #ededed;
+    border-radius: 50%;
+    color: #603913;
+}
+
+.googlebtn img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.register-rectangle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    height: 80%;
+    top: 0;
+    background-color: #ffe6cb;
+    border-radius: 40px;
+}
+
+.register-rectangle form {
+    padding: 0 40px;
+    box-sizing: border-box;
+}
+
+form .register-box{
+    position: relative;
+    border-bottom: 2px solid #adadad;
+    margin: 20px 0;
+}
+
+.register-box input{
+    position: relative;
+    width: 100%;
+    padding: 0 5px;
+    top: 5px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 10px;
+    background: #ededed;
+    outline: none;
+}
+
+.register-box label{
+    top: 0;
+    left: 0;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: #603913;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 0;
+}
+
+.baru {
+    padding-top: 10px;
+    top: 0;
+    left: 0;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: #603913;
+    font-size: 15px;
+    text-align: center;
+    letter-spacing: 0;
+}
+
+.baru a {
+    color: #603913;
+    text-decoration: none;
+}
+
+.baru a:hover {
+    color: #cf7a25;
+    text-decoration: underline;
+}
+
+.register-btn {
+    margin-top: 10px;
+    width: 100%;
+    height: 40px;
+    top: 0;
+    background-color: #603913;
+    border-radius: 50px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    outline: none;
+}
+
+.register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    background: #e8e8e8;
+    height: 100vh;
+}
+
+.register-text {
+    top: 0;
+    left: 0;
+    padding-top: 0;
+    margin-bottom: 0;
+    align-items: center;
+    font-family: "Inter-Bold", Helvetica;
+    font-weight: 700;
+    color: #603913;
+    font-size: 25px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+}
+
+.registerbtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 0;
+    width: 60%;
+    height: 40px;
+    top: 0;
+    background-color: #603913;
+    border-radius: 50px;
+    color: #ffffff;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    outline: none;
+    margin-left: 65px;
+}
