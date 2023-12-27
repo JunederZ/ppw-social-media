@@ -25,7 +25,7 @@ function registerFormSubmit(event) {
             console.log(data);
             if (data === 200) {
                 alert('Registration successful!');
-                window.location.replace("index.html");
+                window.location.replace("login.html");
             }
             else if (data === 401) {
                 alert('Account already exists!');

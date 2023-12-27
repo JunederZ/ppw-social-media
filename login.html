@@ -2,7 +2,8 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <title>Log In</title>
     <link rel="stylesheet" href="styles/loginregis.css">
   </head>
@@ -14,17 +15,20 @@
     <div class="login">
       <div class="rectangle">
         <p class="login-text">Masuk / Login</p>
-        <form method="post">
+        <form id="loginForm">
           <div class="box">
-            <label>Email :</label>
-            <input type="text" name="email" id="email" autocomplete="on" required>
+            <label>Username :</label>
+            <input type="text" name="username" id="username" class="username" autocomplete="on"
+              required>
           </div>
           <div class="box">
             <label>Password :</label>
-            <input type="password" name="password" id="password" autocomplete="on" required>
+            <input type="password" name="password" class="password" id="password"
+              autocomplete="on" required>
           </div>
           <div class="box-button">
-            <button class="login-btn" type="submit" name="login-submit">Log In</button>
+            <button class="login-btn" type="submit" name="login-submit">Log
+              In</button>
             <div class="googlebtn">
               <img class="imagegoogle" src="images/google.png" alt="Your Image">
               <a href="#" class="button"></a>
@@ -32,8 +36,10 @@
           </div>
         </form>
         <div class="baru"><div class="text-wrapper">Pengguna baru??</div>
-        <button class="register-btn" type="submit" name="register"><a href="register.html" class="register-btn">Buat Akun</a></button>
+          <button class="register-btn" type="submit" name="register"><a
+              href="register.html" class="register-btn">Buat Akun</a></button>
+        </div>
       </div>
-    </div>
-  </body>
-</html>
+      <script src="login.js" type="module"></script>
+    </body>
+  </html>
