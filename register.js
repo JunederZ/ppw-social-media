@@ -14,13 +14,14 @@ function registerFormSubmit(event) {
     console.log(JSON.stringify({ username, email, password }));
 
     fetch('https://ppwsosmed.risalahqz.repl.co/api/register', {
+        mode: 'no-cors',
         method: 'POST',
         body: JSON.stringify({ username, email, password }),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
         }
     })
-        .then(response => response.json())
+        .then(response => response.status)
         .then(data => {
             console.log(data);
             alert('Registration successful!');
