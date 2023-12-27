@@ -111,15 +111,6 @@ main {
   padding: 10px;
 }
 
-.friend-container {
-  background-color: #C2C2C2;
-  width: 100%;
-  color: black;
-  border-radius: 10px;
-  padding: 10px;
-  margin-left: 5px;
-}
-
 .profile-container {
   margin-top: 20px;
   background-color: #C2C2C2;
@@ -188,6 +179,99 @@ main {
   color: #ffffff;
   border: none;
   border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+}
+
+.side-friend-main {
+  width: 50%;
+  padding: 10px;
+}
+
+.friend-right {
+  width: 40%;
+  padding: 10px;
+  margin-right: 60px;
+}
+
+.friendlist-container {
+  max-height: 80%; 
+  overflow-y: auto;
+  border-radius: 10px;
+  background-color: #C2C2C2;
+  padding: 10px;
+}
+
+.friendlist-item {
+  display: flex;
+  width: 100%;
+  height: 200px;
+  border-radius: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.friendlist-item:hover {
+  background-color: #894912;
+}
+
+.friendlist-profile img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.friendlist-details h3 {
+  margin: 0;
+}
+
+.friendlist-details p {
+  margin: 5px 0;
+}
+
+.friend-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+.friend-container {
+  background-color: #C2C2C2;
+  width: 100%;
+  color: black;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 5px;
+}
+
+.fcontainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #C2C2C2;
+  width: 100%;
+  color: black;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 5px;
+}
+
+.friend-details {
+  width: 90%;
+  background-color: #F5CCA0;
+  border-radius: 10px;
+  padding: 5px 10px;
+  margin: 10px 0;
+}
+
+.Ufriendbtn {
+  width: 50%;
+  background-color: #dd3737;
+  justify-content: center;
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
   padding: 8px 15px;
   cursor: pointer;
 }
