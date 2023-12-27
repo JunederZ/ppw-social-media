@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Login Page</title>
+    <title>Register Page</title>
     <link rel="stylesheet" href="style.css">
 
 </head>
@@ -11,15 +11,16 @@
     </div>
     <div class="container">
         <div class="form">
-            <h1>Login</h1>
-            <form id="loginForm">
+            <h1>Register</h1>
+            <form id="registerForm">
                 <input type="text" id="username" name="username" placeholder="Username" required>
                 <input type="password" id="password" name="password" placeholder="Password" required>
-                <input type="submit" value="Login" id="loginButton">
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="submit" value="Register" id="registerButton">
             </form>
-            <button onclick="window.location.href='register.html'">Register</button>
+            <button onclick="window.location.href = 'index.html';">Login</button>
         </div>
     </div>
-    <script src="login.js"></script>
+    <script src="register.js"></script>
 </body>
 </html>
