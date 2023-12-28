@@ -16,28 +16,45 @@
       <div class="rectangle">
         <p class="login-text">Masuk / Login</p>
         <form id="loginForm">
-          <div class="box">
-            <label>Username :</label>
-            <input type="text" name="username" id="username" class="username" autocomplete="on"
-              required>
-          </div>
-          <div class="box">
-            <label>Password :</label>
-            <input type="password" name="password" class="password" id="password"
-              autocomplete="on" required>
-          </div>
-          <div class="box">
-            <label>Captcha: </label>
-            <input type="number" name="captcha" id="captcha" required>
-          </div>
-          <div class="box-button">
-            <button class="login-btn" type="submit" name="login-submit">Log
-              In</button>
-            <div class="googlebtn">
-              <img class="imagegoogle" src="images/google.png" alt="Your Image">
-              <a href="#" class="button"></a>
+            <div class="box">
+              <label>Username :</label>
+              <input type="text" name="username" class="username" id="username" autocomplete="on" required>
             </div>
-          </div>
+            <div class="box">
+              <label>Password :</label>
+              <input type="password" name="password" class="password" id="password"
+                autocomplete="on" required>
+            </div>
+            <div class="box">
+              <label>Captcha: </label>
+              <input type="number" name="captcha" id="captcha" required>
+              <span id="captcha-question"></span>
+            </div>
+            <div class="box-button">
+              <button class="login-btn" type="submit" name="login-submit">Log In</button>
+              <div class="googlebtn">
+                <img class="imagegoogle" src="images/google.png" alt="Your Image">
+                <a href="#" class="button"></a>
+              </div>
+            </div>
+            <script>
+              var num1 = Math.floor(Math.random() * 11);
+              var num2 = Math.floor(Math.random() * 11);
+              var sum = num1 + num2;
+
+              var captchaQuestion = document.getElementById("captcha-question");
+              captchaQuestion.textContent = num1 + " + " + num2 + " = ";
+
+              var loginForm = document.getElementById("loginForm");
+              loginForm.addEventListener("submit", function(event) {
+                var captchaInput = document.getElementById("captcha");
+                var userAnswer = parseInt(captchaInput.value);
+                if (userAnswer !== sum) {
+                  event.preventDefault(); // Prevent form submission
+                  alert("Incorrect captcha. Please try again.");
+                }
+              });
+            </script>
         </form>
         <div class="baru"><div class="text-wrapper">Pengguna baru??</div>
           <button class="register-btn" type="submit" name="register"><a
