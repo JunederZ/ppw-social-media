@@ -76,11 +76,10 @@ nav {
   padding: 5px 5px;
 }
 
-
-
 .post-profile img {
   display: flex;
   object-fit: cover;
+  border-radius: 50%;
   width: 100%;
   height: 100%;
 }
@@ -270,10 +269,6 @@ main {
   margin-bottom: 15px;
 }
 
-.post-profile img {
-  border-radius: 50%;
-}
-
 .post-input {
   background-color: #C2C2C2;
   border-radius: 10px;
@@ -301,11 +296,6 @@ main {
    height: 100%;
    object-fit: cover;
    border-radius: 50%;
-}
-
-.post-profile img {
-  border-radius: 50%;
-  margin-right: 10px;
 }
 
 .post-details {
@@ -583,4 +573,39 @@ main {
   height: 100%;
   object-fit: cover;
   border-radius: 50%;
+}
+
+.notification-dropdown {
+  width: 300px; /* Adjust the width as needed */
+  max-height: 400px;
+  overflow-y: auto;
+}
+
+.notification-item {
+  display: flex;
+  padding: 10px;
+  border-bottom: 1px solid #ddd; /* Add a border between notifications */
+}
+
+.notification-profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin-right: 10px;
+}
+
+.notification-profile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.notification-content {
+  flex: 1;
+}
+
+.notification-time {
+  font-size: 12px;
+  color: #888;
 }
