@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>Home</title>
+    <link rel="stylesheet" href="styles/dashboard.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo">
+          <a href="home.html">
+            <img src="images/kaffehub logo.svg" alt="logo"/>
+          </a>
+        </div>
+          <div class="icon-nav">
+            <a href="home.html" style="color: #f5cca0">
+              <i class="fas fa-home"></i>
+            </a>
+          </div>
+          <div class="search">
+            <i class="fas fa-search"></i>
+            <input class="search-input" type="text" placeholder="Search" />
+          </div>
+        </div>
+        <div class="icon-nav">
+          <a href="notification.html">
+            <i class="fas fa-bell" style="color: #f5cca0"></i>
+          </a>
+        </div>
+        <button class="logout-btn" type="button" id="logoutbtn">
+          <a href="#">Logout</a>
+        </button>
+        </nav>
+    </header>
+    <main>
+      <div class="main-profile-post">
+        <div class="post-container" id="post-container">
+          <div class="profile-user">
+            <div class="profile-banner">
+              <a href="images/banner.png">
+                <img src="images/banner.png" alt="Banner">
+              </a>
+            </div>
+            <div class="user-profile-info">
+              <div class="top-user">
+                <div class="userphoto">
+                  <img src="images/profile.jpg" alt="Profile Picture">
+                </div>
+                <div class="user-btn">
+                  <button class="profile-btn" type="button"><a>User Profile</a></button>
+                </div>
+              </div>
+              <div class="user-name">
+                <a href="home-profile.html" id="username">John Doe</a>
+              </div>
+              <div class="follower">
+                <p>Followers: 100</p>
+                <p>Following: 100</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main-right">
+        <div class="friend-container">
+            <div class="friend-details">
+              <div class="friend-profile">
+                <img src="images/profile.jpg" alt="Friend 1">
+              </div>
+              <p class="friend-name">John Doe</p>
+              <div class="friend-data">
+                <p>Email: john.doe@example.com</p>
+                <p>Location: City, Country</p>
+                <p>Interests: Coffee, Reading, Travel</p>
+                <p>Bio: Suka kontol</p>
+              </div>
+            </div>
+            <div class="friend-details">
+              <div class="friend-profile">
+                <img src="images/profile.jpg" alt="Friend 1">
+              </div>
+              <p class="friend-name">John Doe</p>
+              <div class="friend-data">
+                <p>Email: john.doe@example.com</p>
+                <p>Location: City, Country</p>
+                <p>Interests: Coffee, Reading, Travel</p>
+                <p>Bio: Suka kontol</p>
+              </div>
+            </div>
+            <div class="friend-details">
+              <div class="friend-profile">
+                <img src="images/profile.jpg" alt="Friend 1">
+              </div>
+              <p class="friend-name">John Doe</p>
+              <div class="friend-data">
+                <p>Email: john.doe@example.com</p>
+                <p>Location: City, Country</p>
+                <p>Interests: Coffee, Reading, Travel</p>
+                <p>Bio: Suka kontol</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalCenterTitle">Update Profile</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <label for="username" class="labs">Nama: </label>
+              <input type="text" id="username" class="form-control"><br>
+              <label for="email" class="labs">Email: </label>
+              <input type="text" id="email" class="form-control"><br>
+              <label for="bio" class="labs">BIO: </label>
+              <input type="text" id="bio" class="form-control"><br>
+              <label for="ttl" class="labs">Tempat dan Tanggal Lahir: </label>
+              <input type="text" id="ttl" class="form-control"><br>
+              <label for="address" class="labs">Alamat: </label>
+              <input type="text" id="address" class="form-control"><br>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="UpdStd">Update</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <script src="home.js" type="module"></script>
+  </body>
+</html>
