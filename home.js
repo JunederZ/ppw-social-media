@@ -1,7 +1,8 @@
 import * as loadAllFriend from './loadAllFriend.mjs';
 import * as cookieUtils from './cookie.mjs';
 import * as receiveAllPost from './receiveAllPost.mjs';
-
+import * as loadNotif from './loadAllNotif.mjs';
+import * as acceptFriend from './acceptFriend.mjs';
 // Get the form element
 const post = document.getElementById('post-input');
 
@@ -42,7 +43,7 @@ post.addEventListener('submit', function(event) {
 });
 
 async function loadPost() {
-    var posts = await receiveAllPost.receiveAllPost(); // Await the receiveAllPost function to get the posts
+    var posts = await receiveAllPost.receiveAllPost();
     const postsContainer = document.getElementById('post-container');
     posts.forEach(post => {
         const postElement = document.createElement('div');
@@ -64,8 +65,8 @@ async function loadPost() {
     });
 }
 
-async function loadFriends() {
-    var posts = await loadAllFriend.loadAllFriends(); // Await the receiveAllPost function to get the posts
+async function loadFriends(id) {
+    var posts = await loadAllFriend.loadAllFriends(id); // Await the receiveAllPost function to get the posts
     const postsContainer = document.getElementById('friend-container');
     posts.forEach(post => {
         const postElement = document.createElement('div');
@@ -86,19 +87,38 @@ async function loadFriends() {
     });
 }
 
-async function loadAllNotif() {
-    var posts = await loadAllFriend.loadAllFriends(); // Await the receiveAllPost function to get the posts
+async function loadAllNotif(id) {
+    var dict = {
+        1: "Mengirim anda pertemanan",
+        2: "Telah mentowewew anda",
+      };
+
+    var posts = await loadNotif.loadAllNotif(id); // Await the receiveAllPost function to get the posts
     const postsContainer = document.getElementById('dropdown-notif');
+    console.log(posts);
+    if (posts.length === 1) {
+        return;
+    }
     posts.forEach(post => {
         const postElement = document.createElement('div');
+        var time = new Date(Number(post.dateUnix * 1000));
+        try {
+            var username = JSON.parse(post.content).username;
+            var idRequest = JSON.parse(post.content).userIdSource;
+        }catch(err) {
+            return;
+        }
         postElement.innerHTML = `
         <li class="notification-item">
             <div class="notification-profile">
                 <img src="images/profile.jpg" alt="Profile Picture">
             </div>
             <div class="notification-content">
-                <p><strong>${post}</strong> liked your post.</p>
-                <span class="notification-time">2 hours ago</span>
+                <p><strong>${username}</strong> ${dict[post.type]}</p>
+                <span class="notification-time">${time.toDateString()} | ${time.toTimeString()}</span>
+            </div>
+            <div class="accept-button">
+                <button class="accept" id="accept accept-${idRequest}">Accept</button>
             </div>
         </li>
         `;
@@ -107,9 +127,26 @@ async function loadAllNotif() {
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
-    
     await loadPost();
-    await loadFriends()
-    
-});
+    await loadFriends(cookieUtils.getCookie('id'));
+    await loadAllNotif(cookieUtils.getCookie('id'));
 
+    // Add event listener to accept-request buttons
+    document.addEventListener('click', async function(event) {
+        if (event.target.classList.contains('accept')) {
+            const buttonId = event.target.id;
+            const idNumber = buttonId.split('-')[1];
+            // Use the idNumber as needed
+            var res = await acceptFriend.acceptFriend(idNumber);
+            console.log(res)
+            if (res == "ok") {
+                alert("you accept the request");
+                location.reload();
+            }
+            else {
+                alert("error");
+                location.reload();
+            }
+        }
+    });
+});
