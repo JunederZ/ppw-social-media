@@ -1,4 +1,4 @@
-import * as getUserPost from './getUserPost.mjs';
+import * as loadAllFriend from './loadAllFriend.mjs';
 import * as cookieUtils from './cookie.mjs';
 import * as receiveAllPost from './receiveAllPost.mjs';
 
@@ -64,10 +64,52 @@ async function loadPost() {
     });
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+async function loadFriends() {
+    var posts = await loadAllFriend.loadAllFriends(); // Await the receiveAllPost function to get the posts
+    const postsContainer = document.getElementById('friend-container');
+    posts.forEach(post => {
+        const postElement = document.createElement('div');
+        postElement.innerHTML = `
+        <div class="friend-details">
+            <div class="friend-profile">
+                <img src="images/profile.jpg" alt="Friend 1">
+            </div>
+            <p class="friend-name">${post.username}</p>
+            <div class="friend-data">
+                <p>Email: ${post.email}</p>
+                <p>Location: ${post.alamat}</p>
+                <p>Bio: ${post.bio}</p>
+            </div>
+        </div>
+        `;
+        postsContainer.appendChild(postElement);
+    });
+}
+
+async function loadAllNotif() {
+    var posts = await loadAllFriend.loadAllFriends(); // Await the receiveAllPost function to get the posts
+    const postsContainer = document.getElementById('dropdown-notif');
+    posts.forEach(post => {
+        const postElement = document.createElement('div');
+        postElement.innerHTML = `
+        <li class="notification-item">
+            <div class="notification-profile">
+                <img src="images/profile.jpg" alt="Profile Picture">
+            </div>
+            <div class="notification-content">
+                <p><strong>${post}</strong> liked your post.</p>
+                <span class="notification-time">2 hours ago</span>
+            </div>
+        </li>
+        `;
+        postsContainer.appendChild(postElement);
+    });
+}
+
+document.addEventListener('DOMContentLoaded', async function() {
     
-    loadPost();
-
-
+    await loadPost();
+    await loadFriends()
     
 });
+
