@@ -4,9 +4,9 @@ import * as goToProfile from './moduleJs/goToProfile.mjs';
 import * as loadNotif from './moduleJs/loadAllNotif.mjs';
 
 
-var modal = document.getElementById("exampleModalCenter");
+var modal = document.getElementById("profilePictureModal");
 
-var btn = document.getElementById("profile-btn");
+var btn = document.getElementById("change-profile");
 
 var span = document.getElementById("close-modal");
 
