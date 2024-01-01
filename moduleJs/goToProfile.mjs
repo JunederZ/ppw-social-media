@@ -23,7 +23,7 @@ export async function goToProfile(id) {
                         var params = new URLSearchParams();
                         params.append("type", data.type);
                         params.append("id", data.userId);
-                        var path = "home-profile.html?" + window.location.search + "&" + params.toString();
+                        var path = "home-profile.html?" + params.toString();
                         console.log(path);
                         window.location.href = path;
                         return;

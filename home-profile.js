@@ -3,6 +3,8 @@ import * as loadAllFriend from './moduleJs/loadAllFriend.mjs';
 import * as goToProfile from './moduleJs/goToProfile.mjs';
 import * as loadNotif from './moduleJs/loadAllNotif.mjs';
 import * as loadProfile from './moduleJs/loadProfileImage.mjs';
+import * as getUser from './moduleJs/getUserData.mjs';
+import * as sendRequest from './moduleJs/sendRequest.mjs';
 
 
 var modal = document.getElementById("exampleModalCenter");
@@ -11,10 +13,6 @@ var btn = document.getElementById("profile-btn");
 
 var span = document.getElementById("close-modal");
 var span2 = document.getElementById("close-button");
-
-btn.onclick = function() {
-  modal.style.display = "block";
-}
 
 span.onclick = function() {
   modal.style.display = "none";
@@ -32,6 +30,9 @@ window.onclick = function(event) {
 async function loadFriends(id) {
     var posts = await loadAllFriend.loadAllFriends(id); // Await the receiveAllPost function to get the posts
     const postsContainer = document.getElementById('friend-container');
+    while (postsContainer.lastChild) {
+        postsContainer.removeChild(postsContainer.lastChild);
+    }
     posts.forEach(async (post) => {
         const postElement = document.createElement('div');
         const imgSrc = await loadProfile.getProfileImage(post.userId);
@@ -76,6 +77,41 @@ async function loadAllNotif(id) {
     });
 }
 
+async function otherProfile(id, type) {
+
+    // not friend
+    if (type == 1) {
+        var data = await getUser.getUser(id);
+        const imgSrc = await loadProfile.getProfileImage(id);
+        document.querySelector("#profile-picture-main").src = imgSrc;
+        document.querySelector(".profile-btn a").textContent = "Add Friend";
+        document.querySelector(".profile-btn").id = "add-friend";
+        document.querySelector(".profile-btn").addEventListener('click', async () => {
+            await sendRequest.sendRequest(id);
+            await goToProfile.goToProfile(id)
+        });
+        document.querySelector("#username").textContent = data.username;
+    }
+    else if (type == 2) {
+        var data = await getUser.getUser(id);
+        const imgSrc = await loadProfile.getProfileImage(id);
+        document.querySelector("#profile-picture-main").src = imgSrc;
+        document.querySelector("#profile-btn a").textContent = "Already Friend";
+        document.querySelector("#profile-btn").id = "";
+        document.querySelector("#username").textContent = data.username;
+    }
+    else if (type == 4) {
+        var data = await getUser.getUser(id);
+        const imgSrc = await loadProfile.getProfileImage(id);
+        document.querySelector("#profile-picture-main").src = imgSrc;
+        document.querySelector("#profile-btn a").textContent = "Friend request sended";
+        document.querySelector("#profile-btn").id = "";
+        document.querySelector("#username").textContent = data.username;
+    }
+
+}
+
+
 document.addEventListener('DOMContentLoaded', async function() {
     
     await loadFriends(cookieUtils.getCookie('id'));
@@ -95,7 +131,7 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
         });
     
-    document.getElementById('update-modal').addEventListener('click', async function(e) {
+    document.getElementById('UpdStd').addEventListener('click', async function(e) {
     
         var profileImage = document.getElementById('profileImage').files[0];
         var id = cookieUtils.getCookie('id');
@@ -104,9 +140,6 @@ document.addEventListener('DOMContentLoaded', async function() {
         form.append('userId', JSON.stringify({ userId: id }));
         var res = await fetch('https://ppwsosmed.risalahqz.repl.co/api/uploadProfile', {
             method: 'POST',
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            },
             body: form,
         }).then(response => response.text())
         .then(data => {
@@ -116,6 +149,30 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     });
 
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const type = urlParams.get('type');
+    const id = urlParams.get('id');
+    if (type != null && id != null) {
+        console.log(type);
+        console.log(id);
+        await otherProfile(id, type);
+    }
+    else {
+        function displayModal() {
+            modal.style.display = "block";
+        }
+        
+        btn.onclick = displayModal;
+    }
+
+    const searchForm = document.getElementById('search');
+    searchForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const searchInput = document.getElementById('search-input').value;
+        const searchUrl = `searchPage.html?username=${searchInput}`;
+        window.location.href = searchUrl; 
+    });
     
 });
 

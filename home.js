@@ -4,6 +4,10 @@ import * as receiveAllPost from './moduleJs/receiveAllPost.mjs';
 import * as loadNotif from './moduleJs/loadAllNotif.mjs';
 import * as acceptFriend from './moduleJs/acceptFriend.mjs';
 import * as goToProfile from './moduleJs/goToProfile.mjs';
+import * as getUser from './moduleJs/getUserData.mjs';
+import * as loadProfile from './moduleJs/loadProfileImage.mjs';
+
+
 // Get the form element
 const post = document.getElementById('post-input');
 
@@ -69,12 +73,17 @@ async function loadPost() {
 async function loadFriends(id) {
     var posts = await loadAllFriend.loadAllFriends(id); // Await the receiveAllPost function to get the posts
     const postsContainer = document.getElementById('friend-container');
-    posts.forEach(post => {
+    while (postsContainer.lastChild) {
+        postsContainer.removeChild(postsContainer.lastChild);
+    }
+    posts.forEach(async (post) => {
         const postElement = document.createElement('div');
+        const imgSrc = await loadProfile.getProfileImage(post.userId);
+        console.log(imgSrc);
         postElement.innerHTML = `
         <div class="friend-details" id="friend-details-${post.userId}" style="cursor:pointer">
             <div class="friend-profile">
-                <img src="images/profile.jpg" alt="Friend 1">
+                <img src="${imgSrc}" alt="Friend 1">
             </div>
             <p class="friend-name">${post.username}</p>
             <div class="friend-data">
@@ -162,4 +171,26 @@ document.addEventListener('DOMContentLoaded', async function() {
             var res = await goToProfile.goToProfile(idNumber);
         }
     });
+
+    var mainData = await getUser.getUser(cookieUtils.getCookie('id'));
+    const detailElement = document.createElement('div');
+    detailElement.innerHTML = `
+        <h3>${mainData.username}</h3>
+        <div class="detail-box">
+            <p>Email: ${mainData.email}</p>
+            <p>Location: ${mainData.alamat}</p>
+            <p>Bio: ${mainData.bio}</p>
+        </div>
+    `
+    document.getElementById("profile-details").append(detailElement);
+    
+
+    const searchForm = document.getElementById('search');
+    searchForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+        const searchInput = document.getElementById('search-input').value;
+        const searchUrl = `searchPage.html?username=${searchInput}`;
+        window.location.href = searchUrl; 
+    });
+
 });
