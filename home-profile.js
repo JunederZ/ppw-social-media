@@ -1,12 +1,14 @@
 import * as cookieUtils from './moduleJs/cookie.mjs';
 import * as loadAllFriend from './moduleJs/loadAllFriend.mjs';
+import * as goToProfile from './moduleJs/goToProfile.mjs';
+import * as loadNotif from './moduleJs/loadAllNotif.mjs';
 
 
 var modal = document.getElementById("exampleModalCenter");
 
 var btn = document.getElementById("profile-btn");
 
-var span = document.getElementById("close-button");
+var span = document.getElementById("close-modal");
 
 btn.onclick = function() {
   modal.style.display = "block";
@@ -29,7 +31,7 @@ async function loadFriends(id) {
     posts.forEach(post => {
         const postElement = document.createElement('div');
         postElement.innerHTML = `
-        <div class="friend-details">
+        <div class="friend-details" id="friend-details-${post.userId}" style="cursor:pointer">
             <div class="friend-profile">
                 <img src="images/profile.jpg" alt="Friend 1">
             </div>
@@ -73,6 +75,18 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     await loadFriends(cookieUtils.getCookie('id'));
     await loadAllNotif(cookieUtils.getCookie('id'));
+
+        // friend list click
+        document.addEventListener('click', async function(event) {
+            const target = event.target.closest('[id^="friend-details-"]');
+            if (target) {
+                const buttonId = target.id;
+                const idNumber = buttonId.split('-')[2];
+                // Use the idNumber as needed
+                console.log(idNumber, "ok waitss");
+                var res = await goToProfile.goToProfile(idNumber);
+            }
+        });
     
 });
 
