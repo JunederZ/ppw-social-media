@@ -24,6 +24,38 @@ window.onclick = function(event) {
   }
 } 
 
+async function checkImageExists(imageUrl) {
+    try {
+      const response = await fetch(imageUrl, {
+         method: 'HEAD' ,
+         headers: {
+            'Access-Control-Allow-Origin': '*',
+            'Content-Type': 'application/json'
+        },
+        });
+      return response.status === 200; 
+    } catch {
+      return false;
+    }
+  }
+
+async function getProfileImage(id) {
+
+    var imageUrl = `https://ppwsosmed.risalahqz.repl.co/userProfileImage/${id}.jpg`;
+    var image = await checkImageExists(imageUrl);
+
+    if (image) {
+        return imageUrl;
+    }
+    else {
+        return "./images/profile.jpg";
+    }
+
+}
+
+const imgSrc = getProfileImage();
+const imgSrcMain = getProfileImage(cookieUtils.getCookie('id'));
+
 
 async function loadFriends(id) {
     var posts = await loadAllFriend.loadAllFriends(id); // Await the receiveAllPost function to get the posts
@@ -90,21 +122,22 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     document.getElementById('update-modal').addEventListener('click', async function(e) {
     
-        var profileImage = document.getElementById('profileImage').value;
+        var profileImage = document.getElementById('profileImage').files[0];
         var id = cookieUtils.getCookie('id');
-        var res = await fetch('http://localhost:3000/api/user/update', {
-            method: 'PUT',
+        var form = new FormData();
+        form.append('file', profileImage);
+        form.append('userId', JSON.stringify({ userId: id }));
+        var res = await fetch('https://ppwsosmed.risalahqz.repl.co/api/uploadProfile', {
+            method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'multipart/form-data'
             },
-            body: new FormData(e.currentTarget)
-        });
-        var data = await res.json();
-        if (data.status === 'success') {
-            window.location.href = 'home.html';
-        } else {
-            alert(data.message);
-        }
+            body: form,
+        }).then(response => response.text())
+        .then(data => {
+            console.log(data);
+            window.location.reload();
+        })
     
     });
 
