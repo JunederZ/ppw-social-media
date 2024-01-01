@@ -88,5 +88,26 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
         });
     
+    document.getElementById('update-modal').addEventListener('click', async function(e) {
+    
+        var profileImage = document.getElementById('profileImage').value;
+        var id = cookieUtils.getCookie('id');
+        var res = await fetch('http://localhost:3000/api/user/update', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: new FormData(e.currentTarget)
+        });
+        var data = await res.json();
+        if (data.status === 'success') {
+            window.location.href = 'home.html';
+        } else {
+            alert(data.message);
+        }
+    
+    });
+
+    
 });
 

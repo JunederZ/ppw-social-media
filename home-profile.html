@@ -83,26 +83,15 @@
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div class="modal-body">
-              <label for="bannerImage" class="labs">Update Banner: </label>
-              <input type="file" id="bannerImage" class="form-control" accept="image/*"><br>
-              <label for="profileImage" class="labs">Update Profile Picture: </label>
-              <input type="file" id="profileImage" class="form-control" accept="image/*"><br>
-              <label for="username" class="labs">Nama: </label>
-              <input type="text" id="username" class="form-control"><br>
-              <label for="email" class="labs">Email: </label>
-              <input type="text" id="email" class="form-control"><br>
-              <label for="bio" class="labs">BIO: </label>
-              <input type="text" id="bio" class="form-control"><br>
-              <label for="ttl" class="labs">Tempat dan Tanggal Lahir: </label>
-              <input type="text" id="ttl" class="form-control"><br>
-              <label for="address" class="labs">Alamat: </label>
-              <input type="text" id="address" class="form-control"><br>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-button">Close</button>
-              <button type="button" class="btn btn-primary" id="UpdStd">Update</button>
-            </div>
+            <form id="update-modal" enctype="multipart/form-data">
+              <div class="modal-body">
+                <label for="profileImage" class="labs">Update Profile Psicture: </label>
+                <input type="file" id="profileImage" class="form-control" accept="image/*"><br>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-button">Close</button>
+                <button type="button" class="btn btn-primary" id="UpdStd">Update</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
