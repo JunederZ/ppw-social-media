@@ -2,6 +2,7 @@ import * as cookieUtils from './moduleJs/cookie.mjs';
 import * as loadAllFriend from './moduleJs/loadAllFriend.mjs';
 import * as goToProfile from './moduleJs/goToProfile.mjs';
 import * as loadNotif from './moduleJs/loadAllNotif.mjs';
+import * as loadProfile from './moduleJs/loadProfileImage.mjs';
 
 
 var modal = document.getElementById("exampleModalCenter");
@@ -28,43 +29,12 @@ window.onclick = function(event) {
   }
 } 
 
-async function checkImageExists(imageUrl) {
-    return new Promise((resolve) => {
-      const image = new Image();
-      image.onerror = () => resolve(false);
-      image.onload = () => resolve(true);
-      image.src = imageUrl;
-    });
-  }
-
-async function getProfileImage(id) {
-    var imageUrl = `https://ppwsosmed.risalahqz.repl.co/userProfileImage/${id}.jpg`;
-    var check = await checkImageExists(imageUrl);
-    if (check == false) {
-        imageUrl = `https://ppwsosmed.risalahqz.repl.co/userProfileImage/${id}.png`;
-        check = await checkImageExists(imageUrl);
-    }  
-    if (check == false) {
-        console.log("masuk2");
-        imageUrl = `https://ppwsosmed.risalahqz.repl.co/userProfileImage/${id}.jpeg`;
-        check = await checkImageExists(imageUrl);
-    }
-    if (check == false) {
-        imageUrl = `images/profile.jpg`;
-    }
-    return imageUrl;
-}
-
-
-
-const imgSrcMain = getProfileImage(cookieUtils.getCookie('id'));
-
 async function loadFriends(id) {
     var posts = await loadAllFriend.loadAllFriends(id); // Await the receiveAllPost function to get the posts
     const postsContainer = document.getElementById('friend-container');
     posts.forEach(async (post) => {
         const postElement = document.createElement('div');
-        const imgSrc = await getProfileImage(post.userId);
+        const imgSrc = await loadProfile.getProfileImage(post.userId);
         console.log(imgSrc);
         postElement.innerHTML = `
         <div class="friend-details" id="friend-details-${post.userId}" style="cursor:pointer">
@@ -111,7 +81,7 @@ document.addEventListener('DOMContentLoaded', async function() {
     await loadFriends(cookieUtils.getCookie('id'));
     await loadAllNotif(cookieUtils.getCookie('id'));
 
-    document.getElementById('profile-picture-main').src = await getProfileImage(cookieUtils.getCookie('id'));
+    document.getElementById('profile-picture-main').src = await loadProfile.getProfileImage(cookieUtils.getCookie('id'));
 
         // friend list click
         document.addEventListener('click', async function(event) {
