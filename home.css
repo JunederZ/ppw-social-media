@@ -1,0 +1,192 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #111;
+    color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #894912;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+.mainBox {
+    /* max-width: 800px; */
+    padding: 20px;
+    background-color: #222;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row; /* Updated property */
+    justify-content: space-between;
+}
+
+.left-section {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.middle-section {
+    flex: 1;
+    margin: 0 20px;
+}
+
+.right-section {
+    flex: 1;
+    margin-left: 20px;
+}
+
+footer {
+    background-color: #894912;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Additional Twitter-like styles */
+.tweet {
+    background-color: #333;
+    border: 1px solid #555;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.tweet-content {
+    font-size: 16px;
+    margin: 0;
+    color: #fff;
+}
+
+.tweet-author {
+    font-size: 14px;
+    color: #888;
+    margin: 5px 0;
+}
+
+.tweet-time {
+    font-size: 12px;
+    color: #aaa;
+    margin: 5px 0;
+}
+
+/* Modern menu styles */
+.menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Add this line */
+    color: #fff;
+    padding: 10px;
+    border-radius: 5px;
+    max-width: 100px;
+    gap: 50px;
+    margin: 0 auto; /* Add this line */
+}
+
+.menu li {
+    margin-bottom: 10px;
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 1.5rem;
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+.menu li a:hover {
+    background-color: #fff;
+    color: #1da1f2;
+}
+
+/* Modern post styles */
+.post {
+    background-color: #333;
+    border: 1px solid #555;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.post-content {
+    font-size: 18px;
+    margin: 0;
+    color: #fff;
+}
+
+.post-author {
+    font-size: 16px;
+    color: #888;
+    margin: 10px 0;
+}
+
+.post-time {
+    font-size: 14px;
+    color: #aaa;
+    margin: 10px 0;
+}
+
+.header {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: space-evenly;
+}
+
+.middle-header {
+    display: flex;
+    gap: 14rem;
+}
+
+.left-header {
+    display: flex;
+    gap: 1rem;
+}
+
+.right-header {
+    display: flex;
+    gap: 1rem
+}
+
+.search-bar {
+    display: flex;
+    gap: 1rem;
+}
+
+.search-input {
+    border: peachpuff 2px solid;
+    width: 10rem;
+    border-radius: 1rem;
+}
+
+.search-button {
+    border-radius: 1rem;
+    background-color: rgba(245, 182, 100, 0.8);
+    outline: none;
+    box-shadow: none;
+}
+
+.home-page {
+    color: #FFB574; 
+    border-bottom: solid;
+    border-bottom-color: #FFB574;
+}
+
+.no-post {
+    display: grid;
+    place-items: center;
+    color: beige;
+    font-size: large;
+}

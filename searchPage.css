@@ -1,0 +1,59 @@
+.main-friends{ 
+    height: 100%;
+    display: grid;
+    gap: 5rem;
+    padding: 0 0 0 0;
+    margin: 2rem 2rem 2rem 2rem;
+    background-color: #f5f5f5;
+}
+
+.friends-container {
+    width: 100%;
+    padding: 5rem;
+    border-radius: 2rem;
+    display: flex;
+    gap: 5rem;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background-color: chocolate;
+}
+
+.image-friend {
+    width: auto;
+    height: 12rem;
+    border-radius: 16rem;
+}
+
+.friends-pict-dash {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1rem 1rem 1rem 1rem;
+    padding: 0 0 0 0;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: 0 0 0.5rem 0 rgba(0, 0, 0, 0.2);
+}
+
+.username-hyper {
+    font-size: xx-large;
+    text-decoration: none;
+    color: bisque;
+}
+
+.followed {
+    font-size: large;
+    color: darkslategrey;
+}
+
+.friends:hover{
+    background-color: tomato;
+    padding: 2rem;
+    border-radius: 2rem;
+    cursor: pointer;
+
+}
