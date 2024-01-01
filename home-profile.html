@@ -28,10 +28,12 @@
             <input class="search-input" type="text" placeholder="Search" />
           </div>
         </div>
-        <div class="icon-nav">
-          <a href="notification.html">
-            <i class="fas fa-bell" style="color: #f5cca0"></i>
-          </a>
+        <div class="icon-nav" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fas fa-bell" style="color: #f5cca0"></i>
+          <ul class="dropdown-menu notification-dropdown" id="dropdown-notif">
+            <!-- Placeholder Notification Items -->
+            <!-- Add more notification items as needed -->
+          </ul>
         </div>
         <button class="logout-btn" type="button" id="logoutbtn">
           <a href="#">Logout</a>
@@ -51,7 +53,7 @@
               <div class="top-user">
                 <div class="userphoto">
                   <!-- <img src="images/profile.jpg" alt="Profile Picture"> -->
-                  <img src="{imgSrcMain}" alt="Profile Picture">
+                  <img id="profile-picture-main" alt="Profile Picture" />
                 </div>
                 <div class="user-btn">
                   <button id="profile-btn" class="profile-btn" type="button"><a>User Profile</a></button>
@@ -87,7 +89,7 @@
             <form id="update-modal" enctype="multipart/form-data">
               <div class="modal-body">
                 <label for="profileImage" class="labs">Update Profile Psicture: </label>
-                <input type="file" id="profileImage" class="form-control" accept="image/*"><br>
+                <input type="file" id="profileImage" class="form-control" accept="image/png, image/jpeg"><br>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-button">Close</button>
                 <button type="button" class="btn btn-primary" id="UpdStd">Update</button>
