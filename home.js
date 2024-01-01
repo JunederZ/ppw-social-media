@@ -1,8 +1,8 @@
-import * as loadAllFriend from './loadAllFriend.mjs';
-import * as cookieUtils from './cookie.mjs';
-import * as receiveAllPost from './receiveAllPost.mjs';
-import * as loadNotif from './loadAllNotif.mjs';
-import * as acceptFriend from './acceptFriend.mjs';
+import * as loadAllFriend from './moduleJs/loadAllFriend.mjs';
+import * as cookieUtils from './moduleJs/cookie.mjs';
+import * as receiveAllPost from './moduleJs/receiveAllPost.mjs';
+import * as loadNotif from './moduleJs/loadAllNotif.mjs';
+import * as acceptFriend from './moduleJs/acceptFriend.mjs';
 // Get the form element
 const post = document.getElementById('post-input');
 

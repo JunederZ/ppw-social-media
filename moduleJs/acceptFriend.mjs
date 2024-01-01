@@ -1,4 +1,4 @@
-import * as cookieUtils from './cookie.mjs';
+import * as cookieUtils from './moduleJs/cookie.mjs';
 
 export async function acceptFriend(id) {
     console.log("notif  ")

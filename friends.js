@@ -1,5 +1,5 @@
-import * as loadAllFriends from './loadAllFriend.js';
-import * as cookieUtils from './cookie.mjs';
+import * as loadAllFriends from './moduleJs/loadAllFriend.js';
+import * as cookieUtils from './moduleJs/cookie.mjs';
 
 async function loadFriends() {
     var id = cookieUtils.getCookie('id');

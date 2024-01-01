@@ -1,5 +1,5 @@
-import * as cookieUtils from './cookie.mjs';
-import * as loadAllFriend from './loadAllFriend.mjs';
+import * as cookieUtils from './moduleJs/cookie.mjs';
+import * as loadAllFriend from './moduleJs/loadAllFriend.mjs';
 
 
 var modal = document.getElementById("exampleModalCenter");

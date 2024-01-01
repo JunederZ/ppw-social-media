@@ -1,4 +1,4 @@
-import * as cookieUtils from './cookie.mjs';
+import * as cookieUtils from './moduleJs/cookie.mjs';
 
 function handleLoginFormSubmit(event) {
     event.preventDefault();
