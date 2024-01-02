@@ -1,5 +1,4 @@
 export async function loadAllNotif(id) {
-    console.log("notif  ")
     return new Promise((resolve, reject) => {
         fetch('https://ppwsosmed.risalahqz.repl.co/api/readNotification', {
             method: 'POST',

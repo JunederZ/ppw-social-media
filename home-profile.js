@@ -5,6 +5,9 @@ import * as loadNotif from './moduleJs/loadAllNotif.mjs';
 import * as loadProfile from './moduleJs/loadProfileImage.mjs';
 import * as getUser from './moduleJs/getUserData.mjs';
 import * as sendRequest from './moduleJs/sendRequest.mjs';
+import * as getUserPost from './moduleJs/getUserPost.mjs';
+import * as acceptFriend from './moduleJs/acceptFriend.mjs';
+import * as removeFriend from './moduleJs/removeFriend.mjs';
 
 
 var modal = document.getElementById("exampleModalCenter");
@@ -50,17 +53,17 @@ async function loadFriends(id) {
     posts.forEach(async (post) => {
         const postElement = document.createElement('div');
         const imgSrc = await loadProfile.getProfileImage(post.userId);
-        console.log(imgSrc);
+        var dataUser = await getUser.getUser(post.userId);
         postElement.innerHTML = `
         <div class="friend-details" id="friend-details-${post.userId}" style="cursor:pointer">
             <div class="friend-profile">
                 <img src="${imgSrc}" alt="Friend 1">
             </div>
-            <p class="friend-name">${post.username}</p>
+            <p class="friend-name">${dataUser.username}</p>
             <div class="friend-data">
-                <p>Email: ${post.email}</p>
-                <p>Location: ${post.alamat}</p>
-                <p>Bio: ${post.bio}</p>
+                <p>Email: ${dataUser.email}</p>
+                <p>Location: ${dataUser.alamat}</p>
+                <p>Bio: ${dataUser.bio}</p>
             </div>
         </div>
         `;
@@ -69,21 +72,40 @@ async function loadFriends(id) {
 }
 
 async function loadAllNotif(id) {
+    var dict = {
+        1: "Mengirim anda pertemanan",
+        2: "Telah mentowewew anda",
+      };
+
     var posts = await loadNotif.loadAllNotif(id); // Await the receiveAllPost function to get the posts
     const postsContainer = document.getElementById('dropdown-notif');
-    if (posts.length === 1) {
+    if (posts.length === 0) {
         return;
     }
     posts.forEach(post => {
         const postElement = document.createElement('div');
+        var time = new Date(Number(post.dateUnix * 1000));
+        try {
+            var username = JSON.parse(post.content).username;
+            var idRequest = JSON.parse(post.content).userIdSource;
+        }catch(err) {
+            return;
+        }
+        var acc = "";
+        if (post.type == 1) {
+            acc = "Accept";
+        }
         postElement.innerHTML = `
         <li class="notification-item">
             <div class="notification-profile">
                 <img src="images/profile.jpg" alt="Profile Picture">
             </div>
             <div class="notification-content">
-                <p><strong>${post}</strong> liked your post.</p>
-                <span class="notification-time">2 hours ago</span>
+                <p><strong>${username}</strong> ${dict[post.type]}</p>
+                <span class="notification-time">${time.toDateString()} | ${time.toTimeString()}</span>
+            </div>
+            <div class="accept-button">
+                <button class="accept" id="accept accept-${idRequest}">${acc}</button>
             </div>
         </li>
         `;
@@ -122,17 +144,77 @@ async function otherProfile(id, type) {
         document.querySelector("#profile-btn").id = "";
         document.querySelector("#username").textContent = data.username;
     }
+    else if (type == 5) {
+        var data = await getUser.getUser(id);
+        var btnContainer = document.querySelector("#user-btn");
+        var newBtn = document.createElement('button');
+        // newBtn.classList.add('profile-btn');
+        newBtn.classList = `decline decline-${id}`;
+        newBtn.id = `decline-${id}`;
+        newBtn.textContent = "Decline";
+        btnContainer.appendChild(newBtn);
+        const imgSrc = await loadProfile.getProfileImage(id);
+        document.querySelector("#profile-picture-main").src = imgSrc;
+        document.querySelector("#profile-btn").classList = `accept accept-${id}`;
+        document.querySelector("#profile-btn").textContent = "Accept";
+        document.querySelector("#profile-btn").id = `accept-${id}`;
+        document.querySelector("#username").textContent = data.username;
+    }
 
+}
+
+async function loadPost(id) {
+    var posts = await getUserPost.getUserPost(id);
+    const postsContainer = document.getElementById('post-container');
+    posts.forEach(post => {
+        const postElement = document.createElement('div');
+        postElement.innerHTML = `
+        <div class="post">
+            <div class="top-post">
+                <div class="postlistimg">
+                    <img src="images/profile.jpg" alt="Profile Picture">
+                </div>
+                <div class="postlistname">
+                    <p class="post-author">${post.username}</p>
+                </div>
+            </div>
+            <p class="post-content"> ${post.content}</p>
+            <p class="post-time">${post.date}</p>
+        </div>
+        `;
+        postsContainer.appendChild(postElement);
+    });
 }
 
 
 document.addEventListener('DOMContentLoaded', async function() {
+
+    var mainUserData = await getUser.getUser(cookieUtils.getCookie('id'));
+    document.getElementById('profile-picture-main').src = await loadProfile.getProfileImage(cookieUtils.getCookie('id'));
+    document.querySelector('.user-name > a:nth-child(1)').textContent = mainUserData.username;
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    const type = urlParams.get('type');
+    const id = urlParams.get('id');
+    if (type != null && id != null) {
+        console.log(type);
+        console.log(id);
+        await otherProfile(id, type);
+        await loadPost(id);
+    }
+    else {
+        await loadPost(cookieUtils.getCookie('id'));
+        function displayModal() {
+            modal.style.display = "block";
+        }
+        
+        btn.onclick = displayModal;
+    }
     
     await loadFriends(cookieUtils.getCookie('id'));
     await loadAllNotif(cookieUtils.getCookie('id'));
-
-    document.getElementById('profile-picture-main').src = await loadProfile.getProfileImage(cookieUtils.getCookie('id'));
-
+    
+    
         // friend list click
         document.addEventListener('click', async function(event) {
             const target = event.target.closest('[id^="friend-details-"]');
@@ -163,22 +245,48 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     });
 
-
-    const urlParams = new URLSearchParams(window.location.search);
-    const type = urlParams.get('type');
-    const id = urlParams.get('id');
-    if (type != null && id != null) {
-        console.log(type);
-        console.log(id);
-        await otherProfile(id, type);
-    }
-    else {
-        function displayModal() {
-            modal.style.display = "block";
+    // Add event listener to accept-request buttons
+    document.addEventListener('click', async (event) => {
+        console.log(event.target.classList);
+        if (event.target.classList.contains('accept')) {
+            const buttonId = event.target.id;
+            const idNumber = buttonId.split('-')[1];
+            console.log(idNumber);
+            // Use the idNumber as needed
+            var res = await acceptFriend.acceptFriend(idNumber);
+            console.log(res)
+            if (res == "ok") {
+                alert("you accept the request");
+                window.location.replace("home.html");
+            }
+            else {
+                alert("error");
+                window.location.replace("home.html");
+            }
         }
-        
-        btn.onclick = displayModal;
-    }
+    });
+
+    // Add event listener to decline-request buttons
+    document.addEventListener('click', async (event) => {
+        if (event.target.classList.contains('decline')) {
+            const buttonId = event.target.id;
+            const idNumber = buttonId.split('-')[1];
+            // Use the idNumber as needed
+            console.log(idNumber);
+            var res = await removeFriend.removeFriend(idNumber);
+            console.log(res)
+            if (res == "ok") {
+                alert("you decline the request");
+                window.location.replace("home.html");
+            }
+            else {
+                alert("error");
+                window.location.replace("home.html");
+            }
+        }
+    });
+
+
 
     const searchForm = document.getElementById('search');
     searchForm.addEventListener('submit', function(event) {

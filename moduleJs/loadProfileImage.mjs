@@ -15,7 +15,6 @@ export async function getProfileImage(id) {
         check = await checkImageExists(imageUrl);
     }  
     if (check == false) {
-        console.log("masuk2");
         imageUrl = `https://ppwsosmed.risalahqz.repl.co/userProfileImage/${id}.jpeg`;
         check = await checkImageExists(imageUrl);
     }

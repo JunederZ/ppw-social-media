@@ -77,19 +77,21 @@ async function loadFriends(id) {
         postsContainer.removeChild(postsContainer.lastChild);
     }
     posts.forEach(async (post) => {
+        console.log(post);
         const postElement = document.createElement('div');
         const imgSrc = await loadProfile.getProfileImage(post.userId);
+        var dataUser = await getUser.getUser(post.userId);
         console.log(imgSrc);
         postElement.innerHTML = `
         <div class="friend-details" id="friend-details-${post.userId}" style="cursor:pointer">
             <div class="friend-profile">
                 <img src="${imgSrc}" alt="Friend 1">
             </div>
-            <p class="friend-name">${post.username}</p>
+            <p class="friend-name">${dataUser.username}</p>
             <div class="friend-data">
-                <p>Email: ${post.email}</p>
-                <p>Location: ${post.alamat}</p>
-                <p>Bio: ${post.bio}</p>
+                <p>Email: ${dataUser.email}</p>
+                <p>Location: ${dataUser.alamat}</p>
+                <p>Bio: ${dataUser.bio}</p>
             </div>
         </div>
         `;
@@ -103,10 +105,13 @@ async function loadAllNotif(id) {
         2: "Telah mentowewew anda",
       };
 
+    document.getElementById('profile-picture-main').src = await loadProfile.getProfileImage(cookieUtils.getCookie('id'));
+
+
     var posts = await loadNotif.loadAllNotif(id); // Await the receiveAllPost function to get the posts
     const postsContainer = document.getElementById('dropdown-notif');
     console.log(posts);
-    if (posts.length === 1) {
+    if (posts.length === 0) {
         return;
     }
     posts.forEach(post => {
@@ -137,7 +142,7 @@ async function loadAllNotif(id) {
 }
 
 document.addEventListener('DOMContentLoaded', async function() {
-    await loadPost();
+    await loadPost();        
     await loadFriends(cookieUtils.getCookie('id'));
     await loadAllNotif(cookieUtils.getCookie('id'));
 

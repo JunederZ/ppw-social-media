@@ -22,8 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const searchResults = searchUser(users, username);
 
     var friendContainer = document.getElementById('friend-container');
-
-    console.log(searchResults);
+    console.log(users);
 
     searchResults.forEach(async (user) => {
         const friend = document.createElement('div');
@@ -46,13 +45,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     document.addEventListener('click', async function(event) {
-        console.log("sa");
         const target = event.target.closest('[id^="friend-details-"]');
         if (target) {
             const buttonId = target.id;
             const idNumber = buttonId.split('-')[2];
             // Use the idNumber as needed
-            console.log(idNumber, "ok waitss");
             var res = await goToProfile.goToProfile(idNumber);
         }
     });

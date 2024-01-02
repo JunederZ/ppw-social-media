@@ -53,10 +53,10 @@
               <div class="top-user">
                 <div class="userphoto">
                   <a href="#" id="change-profile" data-bs-toggle="modal" data-bs-target="#ModalProfile">
-                    <img src="{imgSrcMain}" id="profile-picture-main" alt="Profile Picture">
+                    <img src="images/profile.jpg" id="profile-picture-main" alt="Profile Picture">
                   </a>
                 </div>
-                <div class="user-btn">
+                <div class="user-btn" id="user-btn">
                   <button id="profile-btn" class="profile-btn" type="button"><a>User Profile</a></button>
                 </div>
               </div>
@@ -64,8 +64,8 @@
                 <a href="home-profile.html" id="username">John Doe</a>
               </div>
               <div class="follower">
-                <p>Followers: 100</p>
-                <p>Following: 100</p>
+                <p></p>
+                <p></p>
               </div>
             </div>
           </div>
@@ -89,7 +89,7 @@
             <form id="update-modal" enctype="multipart/form-data">
               <div class="modal-body">
                 <label for="profileImage" class="labs">Update Profile Psicture: </label>
-                <input type="file" id="profileImage" class="form-control" accept="image/png, image/jpeg"><br>
+                <input type="file" id="profileImage" class="form-control" accept="image/png"><br>
               <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal" id="close-button">Close</button>
                 <button type="button" class="btn btn-primary" id="UpdStd">Update</button>
@@ -132,5 +132,6 @@
       </div>
     </main>
     <script src="home-profile.js" type="module"></script>
+    <script src="logout.js" type="module"></script>
   </body>
 </html>

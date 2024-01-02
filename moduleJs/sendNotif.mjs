@@ -1,7 +1,6 @@
 import * as cookieUtils from './cookie.mjs';
 
 export async function sendRequest(id) {
-    console.log("notif  ")
     return new Promise((resolve, reject) => {
         fetch('https://ppwsosmed.risalahqz.repl.co/api/insertNotification', {
             method: 'POST',
