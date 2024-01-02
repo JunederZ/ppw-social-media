@@ -12,11 +12,15 @@ import * as removeFriend from './moduleJs/removeFriend.mjs';
 
 var modal = document.getElementById("exampleModalCenter");
 var changeprofile = document.getElementById("ModalProfile");
+var changeprofileBtn = document.getElementById("change-profile");
 
+var btn = document.getElementById("profile-btn");
 var btn = document.getElementById("profile-btn");
 
 var span = document.getElementById("tutup-modal");
 var span2 = document.getElementById("tutup-button");
+var span3 = document.getElementById("close-button");
+var span4 = document.getElementById("close-modal");
 
 span.onclick = function() {
   modal.style.display = "none";
@@ -24,11 +28,22 @@ span.onclick = function() {
 span2.onclick = function() {
   modal.style.display = "none";
 }
+span3.onclick = function() {
+    changeprofile.style.display = "none";
+  }
+span4.onclick = function() {
+    changeprofile.style.display = "none";
+  }
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
+
+changeprofileBtn.onclick = function() {
+    changeprofile.style.display = "block";
+}
+
 
 window.onclick = function(event) {
     if (event.target == changeprofile) {
@@ -225,15 +240,33 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
         });
     
-        document.getElementById("Updbtn").addEventListener("click", () => {
+        document.getElementById('UpdStd').addEventListener('click', async function(e) {
+            console.log("sad");
+    
+            var profileImage = document.getElementById('profileImage').files[0];
+            var id = cookieUtils.getCookie('id');
+            var form = new FormData();
+            form.append('file', profileImage);
+            form.append('userId', JSON.stringify({ userId: id }));
+            var res = await fetch('https://ppwsosmed.risalahqz.repl.co/api/uploadProfile', {
+                method: 'POST',
+                body: form,
+            }).then(response => response.text())
+            .then(data => {
+                console.log(data);
+                window.location.reload();
+            })
+        
+        });
+        document.getElementById("Updbtn").addEventListener("click", async () => {
 
             var sendObject = {
               userId: cookieUtils.getCookie('id'),
               email: document.getElementById("email").value,
-              username: document.getElementById("username").value,
+              username: document.querySelector("#exampleModalCenter > div:nth-child(1) > div:nth-child(1) > form:nth-child(2) > div:nth-child(1) > input:nth-child(2)").value,
               bio: document.getElementById("bio").value,
-              ttl: document.getElementById("ttl").value,
-              alamat: document.getElementById("address").value,
+              ttl: document.getElementById("interest").value,
+              alamat: document.getElementById("location").value,
             };
             var sendJson = JSON.stringify(sendObject);
             const toptions = {
@@ -241,7 +274,7 @@ document.addEventListener('DOMContentLoaded', async function() {
               headers: { "Content-Type": "application/json" },
               body: sendJson,
             };
-            var temp = fetch(
+            var temp = await fetch(
               "https://ppwsosmed.risalahqz.repl.co/api/updateUserAllData",
               toptions
             )

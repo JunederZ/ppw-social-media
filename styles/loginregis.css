@@ -85,6 +85,10 @@ form .box{
     margin: 20px 0;
 }
 
+.captcha-question {
+    color: #603913;
+}
+
 .box input{
     position: relative;
     width: 100%;
@@ -270,4 +274,8 @@ form .register-box{
     border: none;
     outline: none;
     margin-left: 65px;
+}
+
+.register-btn a{
+    color:white;
 }
