@@ -163,7 +163,6 @@ document.addEventListener('DOMContentLoaded', async function() {
     
     });
 
-
     const urlParams = new URLSearchParams(window.location.search);
     const type = urlParams.get('type');
     const id = urlParams.get('id');
@@ -187,6 +186,30 @@ document.addEventListener('DOMContentLoaded', async function() {
         const searchUrl = `searchPage.html?username=${searchInput}`;
         window.location.href = searchUrl; 
     });
-    
+
+    document.getElementById("Updbtn").addEventListener("click", () => {
+
+        var sendObject = {
+          userId: cookieUtils.getCookie('id'),
+          email: document.getElementById("email").value,
+          username: document.getElementById("username").value,
+          bio: document.getElementById("bio").value,
+          ttl: document.getElementById("ttl").value,
+          alamat: document.getElementById("address").value,
+        };
+        var sendJson = JSON.stringify(sendObject);
+        const toptions = {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: sendJson,
+        };
+        var temp = fetch(
+          "https://ppwsosmed.risalahqz.repl.co/api/updateUserAllData",
+          toptions
+        )
+          .then((response) => response)
+          .catch((err) => console.error(err));
+        window.location.reload();
+      });
 });
 
