@@ -15,10 +15,8 @@ var changeprofile = document.getElementById("ModalProfile");
 
 var btn = document.getElementById("profile-btn");
 
-var span = document.getElementById("close-modal");
-var span2 = document.getElementById("close-button");
-var span3 = document.getElementById("tutup-button");
-var span4 = document.getElementById("tutup-modal");
+var span = document.getElementById("tutup-modal");
+var span2 = document.getElementById("tutup-button");
 
 span.onclick = function() {
   modal.style.display = "none";
@@ -36,12 +34,6 @@ window.onclick = function(event) {
     if (event.target == changeprofile) {
       changeprofile.style.display = "none";
     }
-}
-span3.onclick = function() {
-    changeprofile.style.display = "none";
-}  
-span4.onclick = function() {
-    changeprofile.style.display = "none";
 }
 
 async function loadFriends(id) {
@@ -209,6 +201,12 @@ document.addEventListener('DOMContentLoaded', async function() {
         }
         
         btn.onclick = displayModal;
+        var data = await getUser.getUser(cookieUtils.getCookie('id'));
+        document.querySelector("#exampleModalCenter > div:nth-child(1) > div:nth-child(1) > form:nth-child(2) > div:nth-child(1) > input:nth-child(2)").value = data.username;
+        document.querySelector("#email").value = data.email;
+        document.querySelector("#location").value = data.alamat;
+        document.querySelector("#interest").value = data.ttl;
+        document.querySelector("#bio").value = data.bio;
     }
     
     await loadFriends(cookieUtils.getCookie('id'));
@@ -227,27 +225,33 @@ document.addEventListener('DOMContentLoaded', async function() {
             }
         });
     
-    document.getElementById('UpdStd').addEventListener('click', async function(e) {
-    
-        var profileImage = document.getElementById('profileImage').files[0];
-        var id = cookieUtils.getCookie('id');
-        var form = new FormData();
-        form.append('file', profileImage);
-        form.append('userId', JSON.stringify({ userId: id }));
-        var res = await fetch('https://ppwsosmed.risalahqz.repl.co/api/uploadProfile', {
-            method: 'POST',
-            body: form,
-        }).then(response => response.text())
-        .then(data => {
-            console.log(data);
+        document.getElementById("Updbtn").addEventListener("click", () => {
+
+            var sendObject = {
+              userId: cookieUtils.getCookie('id'),
+              email: document.getElementById("email").value,
+              username: document.getElementById("username").value,
+              bio: document.getElementById("bio").value,
+              ttl: document.getElementById("ttl").value,
+              alamat: document.getElementById("address").value,
+            };
+            var sendJson = JSON.stringify(sendObject);
+            const toptions = {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: sendJson,
+            };
+            var temp = fetch(
+              "https://ppwsosmed.risalahqz.repl.co/api/updateUserAllData",
+              toptions
+            )
+              .then((response) => response)
+              .catch((err) => console.error(err));
             window.location.reload();
-        })
-    
-    });
+          });
 
     // Add event listener to accept-request buttons
     document.addEventListener('click', async (event) => {
-        console.log(event.target.classList);
         if (event.target.classList.contains('accept')) {
             const buttonId = event.target.id;
             const idNumber = buttonId.split('-')[1];
